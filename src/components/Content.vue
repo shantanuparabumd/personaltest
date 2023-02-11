@@ -1,64 +1,77 @@
 <template>
-<div class="row">
-  <div v-for="p in projects" :key="p.id" class="column">
-    <Card :Title="p.title" :Content="p.content" :Image="p.image" />
-  </div>
-</div>
-
+    <div class="container">
+      <div class="row" v-for="(row, index) in rows" :key="index">
+        <div class="column" v-for="card in row" :key="card.id">
+          <Card :title="card.title" :content="card.content" :image="card.image" />
+        </div>
+      </div>
+    </div>
+  </template>
   
-</template>
-<script>
-// @ is an alias to /src
-import Card from '@/components/Card.vue'
-import {data} from '@/store/projects'
-
-export default {
-  name: 'Content',
-  data() {
-    return {
-      projects : data
+  <script>
+  import Card from '@/components/Card.vue'
+  import {data} from '@/store/projects'
+  
+  export default {
+    components: {
+      Card
+    },
+    data() {
+      return {
+        cards: data,
+        cardsPerRow: 4
+      };
+    },
+    computed: {
+      rows() {
+        let rows = [];
+        for (let i = 0; i < this.cards.length; i += this.cardsPerRow) {
+          rows.push(this.cards.slice(i, i + this.cardsPerRow));
+        }
+        return rows;
+      }
     }
-  },
-  components: {
-    Card
+  };
+  </script>
+  
+  <style>
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
-}
-</script>
-<style scoped>
-/* Float four columns side by side */
-
-.column {
-  float: left;
-  width: 25%;
-  /* padding: 5px 5px; */
-}
-
-/* Remove extra left and right margins, due to padding in columns */
-.row {margin: 5px 0px;}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the counter cards */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
-  width: 90%;
-  margin-bottom: 5px;
-}
-
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-  .column {
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    display: block;
-    margin-bottom: 20px;
   }
-}
-</style>
+  
+  .column {
+    flex: 1 0 25%;
+    max-width: 25%;
+    /* padding: 1rem; */
+  }
+  
+  @media (max-width: 992px) {
+    .column {
+      flex: 1 0 33.33%;
+      max-width: 33.33%;
+      
+    }
+  }
+  @media (max-width: 768px) {
+    .column {
+      flex: 1 0 50%;
+      max-width: 50%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .column {
+      flex: 1 0 100%;
+      max-width: 100%;
+    }
+  }
+  </style>
+  

@@ -9,11 +9,26 @@
                 applying machine learning techniques, or designing control systems, your work has the potential to make a significant impact on a variety of industries
                  and fields. As you continue your studies, 
             you will have the opportunity to collaborate with other researchers and professionals, and to make your mark on this rapidly-growing and dynamic field.</p>
-
+            <a href="/src/store/resume.pdf" download>
+                <button class="download-btn">Download Resume</button>
+                </a>
         </div>
+        
         
     </div>
 </template>
+<script>
+export default {
+  methods: {
+    downloadResume() {
+      const link = this.$refs.downloadLink
+      link.href = 'resume.pdf'
+      link.download = 'resume.pdf'
+    //   link.click()
+    }
+  }
+}
+</script>
 <style scoped>
 .back{
     background-image: url(../assets/deepika.jpg);
@@ -30,7 +45,18 @@
     width: 45%;
     height: auto;
 }
+.download-btn {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+.download-btn:hover {
+  background-color: #444;
+}
 
 
 </style>

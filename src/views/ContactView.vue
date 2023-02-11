@@ -1,6 +1,7 @@
 <template>
     <Header></Header>
-    <h1>Contact</h1>
+    <div>Contact</div>
+    <Contact></Contact>
     <Footer></Footer>
   </template>
   
@@ -11,6 +12,7 @@
   import Welcome from '@/components/Welcome.vue'
   import Content from '@/components/Content.vue'
   import About from '@/components/About.vue'
+  import Contact from '@/components/Contact.vue'
   
   export default {
     name: 'ContactView',
@@ -19,6 +21,7 @@
       Footer,
       Welcome,
       Content,
+      Contact,
       About
     }
   }

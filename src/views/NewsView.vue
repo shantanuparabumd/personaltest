@@ -1,7 +1,7 @@
 <template>
     <Header></Header>
-    <div>Hello</div>
-    <h1> News</h1>
+    <!-- <div>Hello</div> -->
+    <!-- <New></New> -->
     <Footer></Footer>
   </template>
   
@@ -12,6 +12,7 @@
   import Welcome from '@/components/Welcome.vue'
   import Content from '@/components/Content.vue'
   import About from '@/components/About.vue'
+  // import New from '@/components/New.vue'
   
   export default {
     name: 'NewsView',
@@ -20,7 +21,7 @@
       Footer,
       Welcome,
       Content,
-      About
+      About,
     }
   }
   </script>
